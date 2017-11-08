@@ -11,24 +11,7 @@ function startGameEasy(){
 }
 function startGameMedium(){
     setUpLetters();
-    var randomwordmedium=["slogan","bomber"
-        "rabbit"
-        "family"
-        "tumour"
-        "Sunday"
-        "father"
-        "harass"
-        "vision"
-        "suburb"
-        "master"
-        "module"
-        "summit"
-        "agenda"
-        "reason"
-        "cherry"
-        "marble"
-        "finish"
-        ,"church","cancel","spider","stroke","rhythm","embark"];
+    var randomwordmedium=["slogan","bomber","rabbit","family","tumour","Sunday","father","harass","vision","suburb","master","module","summit","agenda","reason","cherry","marble","finish","church","cancel","spider","stroke","rhythm","embark"];
     var randomwordnumber= Math.floor(Math.random()*randomwordmedium.length);
     var selectedword=randomwordmedium[randomwordnumber];
     var wordtoguess="";
