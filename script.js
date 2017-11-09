@@ -7,8 +7,11 @@ function startGameEasy(){
         wordtoguess+="_ ";
     }
     document.getElementById("Word").innerHTML=wordtoguess;
+    document.getElementById("Difficulty").innerHTML= "Current Difficulty: Easy"
 
 }
+
+
 function startGameMedium(){
     setUpLetters();
     var randomwordmedium=["slogan","bomber","rabbit","family","tumour","Sunday","father","harass","vision","suburb","master","module","summit","agenda","reason","cherry","marble","finish","church","cancel","spider","stroke","rhythm","embark"];
@@ -19,6 +22,7 @@ function startGameMedium(){
         wordtoguess+="_ ";
     }
     document.getElementById("Word").innerHTML=wordtoguess;
+    document.getElementById("Difficulty").innerHTML= "Current Difficulty: Medium"
 
 }
 
@@ -33,24 +37,36 @@ function startGameHard(){
         wordtoguess+="_ ";
     }
     document.getElementById("Word").innerHTML=wordtoguess;
+    document.getElementById("Difficulty").innerHTML= "Current Difficulty: Hard"
 
 }
 
 
+function selectGame(){
+    var chosendifficulty= document.getElementById("newgame").value;
+    if (chosendifficulty==1){
+        startGameEasy();
+    }else if (chosendifficulty ==2){
+        startGameMedium();
+    }else if(chosendifficulty==3){
+        startGameHard();
+    }
+}
+
+function playGame(){
+    document.getElementById("")
+}
 
 function setUpLetters(){
     var alphabet=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
     for(var i=0; i<26; i++){
-        var letter= alphabet[i];
-        document.getElementById("letters").innerText+= "<option value="+ letter +">"+ letter+ "</option>";
+        var letter = alphabet[i];
+        document.getElementById("letters").innerText+= "<option value=" + letter +">"+ letter+ "</option>";
     }
 }
 
-function setUpWord(){
-
-}
 
 function rightorwrong(){
-    var guess= document.getElementById("Letter").value;
+    var guess= document.getElementById("letters").value;
 
 }
