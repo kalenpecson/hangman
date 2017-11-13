@@ -1,5 +1,12 @@
 
+var displayedletters="";
+var randomword="";
+
+var alphabet=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+
 function playGame(){
+    displayedletters="";
+    randomword="";
     setUpLetters();
     var randomwordseasy=["relax","cane","pure","chin","bare","tune","peak","try","van","harsh","quit","sport","model","table","bill","beach","lover","tank","car","seal","bow","pony","waist","habit","fool","tempt","tidy","smile","cast","agony","bond","theme","watch","wrist","gate"];
     var randomwordmedium=["slogan","bomber","rabbit","family","tumour","Sunday","father","harass","vision","suburb","master","module","summit","agenda","reason","cherry","marble","finish","church","cancel","spider","stroke","rhythm","embark"];
@@ -7,7 +14,6 @@ function playGame(){
     var chosendifficulty= document.getElementById("newgame").value;
     var randomnumber= Math.floor(Math.random()*randomwordhard.length);
 
-    var displayedletters="";
     if (chosendifficulty==1){
         randomword = randomwordseasy[randomnumber];
         document.getElementById("Difficulty").innerHTML= "Current Difficulty: Easy"
@@ -18,16 +24,15 @@ function playGame(){
         randomword = randomwordhard[randomnumber];
         document.getElementById("Difficulty").innerHTML= "Current Difficulty: Hard"
     }
+    console.log(randomword);
     for(var i=0;i<randomword.length; i++){
         displayedletters+="_ ";
     }
     document.getElementById("Word").innerHTML=displayedletters;
 }
 
-var randomword="";
 
 function setUpLetters(){
-    var alphabet=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
     for(var i=0; i<26; i++){
         var letter = alphabet[i];
         document.getElementById("letters").innerHTML += "<option value=" + letter +">"+ letter+ "</option>";
@@ -36,7 +41,17 @@ function setUpLetters(){
 
 function checkLetter(){
     var inputletter=document.getElementById("letters").value;
-    var stringrandomword= [randomword];
-    if (randomword.)
+    var copydisplayedletters= randomword;
+    if (randomword.includes(inputletter)){
+        for (var i=0; i<26; i++){
+            if ( i !=inputletter ){
+                copydisplayedletters = copydisplayedletters.replace(i,"_ ");
+            }
+        }
+        displayedletters=copydisplayedletters ;
+        document.getElementById("Word").innerHTML= displayedletters;
+    }else{
+
+    }
 }
 
