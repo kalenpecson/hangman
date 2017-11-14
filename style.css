@@ -20,8 +20,10 @@ p{
 body{
     background-color: antiquewhite;
 }
+
 #makeanewgame {
-    position: absolute;
-    top: 0;
-    right:0;
+    position: relative;
+    border: 1px black solid;
+    top: 200px;
+    left:200px;
 }
