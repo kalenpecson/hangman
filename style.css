@@ -23,7 +23,6 @@ body{
 
 #makeanewgame {
     position: relative;
-    border: 1px black solid;
     top: 200px;
-    left:200px;
+    left: 650px;
 }

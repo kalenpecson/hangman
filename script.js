@@ -1,10 +1,14 @@
 
 var displayedletters="";
 var randomword="";
-var copydisplayedletters= randomword;
 var alphabet=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var guessedletters=[];
+
+
+
 
 function playGame(){
+
     displayedletters="";
     randomword="";
     setUpLetters();
@@ -40,23 +44,21 @@ function setUpLetters(){
 }
 
 function checkLetter(){
+    var r="";
     var inputletter = document.getElementById("letters").value;
-    var guessedletters="";
-    var copyrandomword= randomword;
-    guessedletters += inputletter ;
-    if(randomword.includes(inputletter){
-        copyrandomword.replace(inputletter,"_ ");
-    }
-    if (copydisplayedletters.includes(inputletter)){
-        for (var i=0; i<26; i++){
-            if (guessedletters.includes(i)==false){
-                copydisplayedletters.replace(alphabet[i],"_ ");
-            }
+    guessedletters.push(inputletter);
+    console.log(guessedletters);
+    for (var i=0; i<randomword.length; i++){
+        if(guessedletters.indexOf(randomword[i])> -1){
+            r += (randomword[i]+" ");
+        }else{
+            r+= "_ ";
         }
-        displayedletters=copydisplayedletters;
-        document.getElementById("Word").innerHTML= displayedletters;
-    }else{
+    }
+    if (guessedletters.indexOf(inputletter)== -1){
 
     }
-}
+    document.getElementById("Word").innerHTML= r;
 
+}
+// string.replace(/,/g, '');
