@@ -22,7 +22,17 @@ body{
 }
 
 #makeanewgame {
-    position: relative;
-    top: 200px;
-    left: 650px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#myCanvas {
+    margin: auto ;
+    display: block;
+
+}
+
+#guessedletters{
+    text-align: center ;
 }

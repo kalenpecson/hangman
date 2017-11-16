@@ -9,12 +9,19 @@
 </head>
 <body onload="playGame()">
 <p>Hangman</p>
-<button id="Enter" onclick="checkLetter()">Enter</button>
+
 <div id="Word"></div>
 <div id="letterDiv">
     <select id="letters"></select>
+    <button id="Enter" onclick="checkLetter()">Enter</button>
+</div>
+<canvas id="myCanvas" width="300" height="400" style="border:1px solid #000000;">
+</canvas>
+<div id="guesseddiv">
+    <p id="guessedletters">Guessed Letters: </p>
 </div>
 <div id="makeanewgame">
+    <b>New Game?? <b/>
     <select id="newgame">
         <option value="1">Easy</option>
         <option value="2">Medium</option>
