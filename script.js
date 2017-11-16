@@ -3,9 +3,10 @@ var displayedletters="";
 var randomword="";
 var alphabet=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var guessedletters=[];
-
+var inputletter= "";
 
 function playGame(){
+    numberofincorrect=0;
     guessedletters=[];
     document.getElementById("Word").innerHTML="";
     var abc= document.getElementById("myCanvas");
@@ -13,7 +14,6 @@ function playGame(){
     abctx.clearRect(0, 0,300,400);
     document.getElementById("guessedletters").innerHTML="Guessed Letters: ";
     setuphangman ();
-    numberofincorrect=0;
     alphabet=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
     displayedletters="";
     randomword="";
@@ -42,16 +42,19 @@ function playGame(){
 }
 
 
-function setUpLetters(){
+function setUpLetters(inputted){
+    if(alphabet.indexOf(inputted)>-1){
+        alphabet.splice((alphabet.indexOf(inputted)),1);
+    }
     for(var i=0; i<26; i++){
         var letter = alphabet[i];
-        document.getElementById("letters").innerHTML += "<option value=" + letter +">"+ letter+ "</option>";
+        document.getElementById("letters").innerHTML += "<option value=" + letter + ">" + letter + "</option>";
     }
 }
 
 function checkLetter(){
     var r="";
-    var inputletter = document.getElementById("letters").value;
+    inputletter = document.getElementById("letters").value;
     guessedletters.push(inputletter);
     console.log(guessedletters);
     for (var i=0; i<randomword.length; i++){
@@ -75,9 +78,9 @@ function checkLetter(){
         etx.fillText("You Won!!",75,385);
     }
     document.getElementById("guessedletters").innerHTML+=inputletter+ " ";
-    alphabet.splice((alphabet.indexOf(inputletter)),1);
-    document.getElementById("letters").innerHTML-= "<option value=" + inputletter +">"+ inputletter+ "</option>";
-    setUpLetters ();
+    console.log(alphabet);
+    document.getElementById("letters").innerHTML= null;
+    setUpLetters(inputletter);
     document.getElementById("Word").innerHTML= r;
 
 }
@@ -102,19 +105,19 @@ function setuphangman(){
 }
 
 function drawline(x1,y1,x2,y2){
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-    ctx.lineWidth = 1;
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
-    ctx.stroke();
+    var g = document.getElementById("myCanvas");
+    var gtx = g.getContext("2d");
+    gtx.lineWidth = 1;
+    gtx.moveTo(x1, y1);
+    gtx.lineTo(x2, y2);
+    gtx.stroke();
 }
 function drawcircle(x,y,r){
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-    ctx.beginPath();
-    ctx.arc(x,y,r,0,2*Math.PI);
-    ctx.stroke();
+    var d = document.getElementById("myCanvas");
+    var dtx = d.getContext("2d");
+    dtx.beginPath();
+    dtx.arc(x,y,r,0,2*Math.PI);
+    dtx.stroke();
 }
 
 function drawhangman(x) {
@@ -151,11 +154,11 @@ function drawhangman(x) {
         drawcircle(197,135,2);
     }
     if(x>=11){
-        var c=document.getElementById("myCanvas");
-        var ctx=c.getContext("2d");
-        ctx.beginPath();
-        ctx.arc(200,160,15,1*Math.PI,2*Math.PI);
-        ctx.stroke();
+        var a=document.getElementById("myCanvas");
+        var atx=a.getContext("2d");
+        atx.beginPath();
+        atx.arc(200,160,15,Math.PI,2*Math.PI);
+        atx.stroke();
         var e = document.getElementById("myCanvas");
         var etx = e.getContext("2d");
         etx.font = "30px Arial";
