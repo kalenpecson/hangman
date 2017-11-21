@@ -15,8 +15,11 @@
     <select id="letters"></select>
     <button id="Enter" onclick="checkLetter()">Enter</button>
 </div>
-<canvas id="myCanvas" width="300" height="400" style="border:1px solid #000000;">
-</canvas>
+
+<div id="theCanvas">
+    <canvas id="myCanvas" width="300" height="400" style="border:1px solid #000000;"></canvas>
+</div>
+
 <div id="guesseddiv">
     <p id="guessedletters">Guessed Letters: </p>
 </div>
@@ -27,7 +30,7 @@
         <option value="2">Medium</option>
         <option value="3">Hard</option>
     </select>
-    <button id="StartGame" onclick="playGame()">Enter</button>
+    <button id="StartGame" onclick="playGame()">Play</button>
 </div>
 
 <div id="Difficulty"></div>

@@ -5,13 +5,16 @@ var alphabet=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q
 var guessedletters=[];
 var inputletter= "";
 
+
+
+
 function playGame(){
+    deleteallletters();
     numberofincorrect=0;
     guessedletters=[];
     document.getElementById("Word").innerHTML="";
-    var abc= document.getElementById("myCanvas");
-    var abctx= abc.getContext('2d');
-    abctx.clearRect(0, 0,300,400);
+    document.getElementById("theCanvas").innerHTML="";
+    document.getElementById("theCanvas").innerHTML= "<canvas id='myCanvas' width='300' height='400' style='border:1px solid #000000;'></canvas>"
     document.getElementById("guessedletters").innerHTML="Guessed Letters: ";
     setuphangman ();
     alphabet=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
@@ -42,15 +45,19 @@ function playGame(){
 }
 
 
-function setUpLetters(inputted){
-    if(alphabet.indexOf(inputted)>-1){
-        alphabet.splice((alphabet.indexOf(inputted)),1);
-    }
+
+
+
+function setUpLetters(){
     for(var i=0; i<26; i++){
         var letter = alphabet[i];
         document.getElementById("letters").innerHTML += "<option value=" + letter + ">" + letter + "</option>";
     }
 }
+
+
+
+
 
 function checkLetter(){
     var r="";
@@ -70,18 +77,71 @@ function checkLetter(){
     }
     var copyr= r.replace(/ /g,"");
     console.log(copyr);
-    if (randomword==copyr){
-        var e = document.getElementById("myCanvas");
-        var etx = e.getContext("2d");
-        etx.font = "30px Arial";
-        etx.fillStyle="#FF00FF";
-        etx.fillText("You Won!!",75,385);
-    }
     document.getElementById("guessedletters").innerHTML+=inputletter+ " ";
     console.log(alphabet);
-    document.getElementById("letters").innerHTML= null;
-    setUpLetters(inputletter);
+    deleteletter(inputletter);
     document.getElementById("Word").innerHTML= r;
+    if(numberofincorrect==11){
+        document.getElementById("guessedletters").innerHTML="YOU LOST :((";
+
+    }
+    if (randomword==copyr){
+        document.getElementById("guessedletters").innerHTML="YOU WON!!!";
+        wongamehangman();
+        deleteallletters();
+    }
+
+}
+
+
+
+
+function deleteletter(){
+    var selectedindex= document.getElementById("letters").selectedIndex;
+    var box= document.getElementById("letters");
+    box.remove(selectedindex);
+}
+
+
+
+
+function deleteallletters(){
+    var box= document.getElementById("letters");
+    for(var i=0;i<26;i++){
+        if(guessedletters.indexOf(alphabet[i])==-1){
+            var selected= document.getElementById("letters").selectedIndex;
+            box.remove(selected);
+        }
+    }
+}
+
+
+function wongamehangman(){
+    var abc= document.getElementById("myCanvas");
+    var abctx= abc.getContext('2d');
+    abctx.clearRect(0, 0,300,400);
+    setuphangman();
+    var a=document.getElementById("myCanvas");
+    var atx=a.getContext("2d");
+    atx.beginPath();
+    atx.lineWidth=1;
+    atx.arc(200,150,2,Math.PI,2*Math.PI,true);
+    atx.stroke();
+    drawline(200,50,200,100);
+    drawcircle(200,135,35);
+    drawline(200,170,200,250);
+    drawline(200,250,175,300);
+    drawline(200,250,225,300);
+    drawline(200,180,175,225);
+    drawline(200,180,225,225);
+    drawcircle(210,125,5);
+    drawcircle(190,125,5);
+    drawcircle (203,135,2);
+    drawcircle(197,135,2);
+    var cba=document.getElementById("myCanvas");
+    var cbatx= cba.getContext('2d');
+    cbatx.clearRect(199, 53,3,47);
+
 
 }
 
@@ -104,6 +164,10 @@ function setuphangman(){
 
 }
 
+
+
+
+
 function drawline(x1,y1,x2,y2){
     var g = document.getElementById("myCanvas");
     var gtx = g.getContext("2d");
@@ -112,57 +176,62 @@ function drawline(x1,y1,x2,y2){
     gtx.lineTo(x2, y2);
     gtx.stroke();
 }
+
+
+
+
 function drawcircle(x,y,r){
     var d = document.getElementById("myCanvas");
     var dtx = d.getContext("2d");
+    dtx.lineWidth=1;
     dtx.beginPath();
     dtx.arc(x,y,r,0,2*Math.PI);
     dtx.stroke();
 }
 
+
+
+
 function drawhangman(x) {
 
-    if (x >= 1) {
+    if (x == 1) {
         drawline(200,50,200,100);
     }
-    if (x >= 2) {
+    if (x == 2) {
         drawcircle(200,135,35);
     }
-    if(x>=3){
+    if(x==3){
         drawline(200,170,200,250);
     }
-    if(x>=4){
+    if(x==4){
         drawline(200,250,175,300);
     }
-    if(x>=5){
+    if(x==5){
         drawline(200,250,225,300);
     }
-    if(x>=6){
+    if(x==6){
         drawline(200,180,175,225);
     }
-    if(x>=7){
+    if(x==7){
         drawline(200,180,225,225);
     }
-    if(x>=8){
+    if(x==8){
        drawcircle(210,125,5);
     }
-    if(x>=9){
+    if(x==9){
         drawcircle(190,125,5);
     }
-    if(x>=10){
+    if(x==10){
         drawcircle (203,135,2);
         drawcircle(197,135,2);
     }
-    if(x>=11){
+    if(x==11){
         var a=document.getElementById("myCanvas");
         var atx=a.getContext("2d");
         atx.beginPath();
+        atx.lineWidth=1;
         atx.arc(200,160,15,Math.PI,2*Math.PI);
         atx.stroke();
-        var e = document.getElementById("myCanvas");
-        var etx = e.getContext("2d");
-        etx.font = "30px Arial";
-        etx.fillStyle="#FF0000";
-        etx.fillText("You Lose",75,385);
+        deleteallletters();
     }
 }
